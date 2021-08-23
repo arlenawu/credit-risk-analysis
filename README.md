@@ -1,18 +1,20 @@
 # credit-risk-analysis
 
 # Overview
-The purpose of this project is to develop a model that can predict the risk of customers not being able to pay back their loans. Six different machine learning models were tested -- RandomOverSampler, SMOTE, RandomUnderSampler, SMOTEENN, BalancedRandomForestClassifier, and EasyEnsembleClassifier. Positive predictions indicate a customer who has a high risk level.
+This project analyzes financial data of several hundred customers who took out loans in order to develop a model that can predict which customers may be at risk of not being able to pay back their loans. Six different machine learning models were tested -- RandomOverSampler, SMOTE, RandomUnderSampler, SMOTEENN, BalancedRandomForestClassifier, and EasyEnsembleClassifier. Positive predictions indicate a customer who has a high risk level.
 
 # Results
 
 ### Logistic Regression
+Four models were developed using logistic regression. The difference between them was in how they sampled their test data.
+
 - **Oversampling (RandomOverSampler)**
   - Balanced Accuracy Score: 0.660
   - Confusion Matrix:
     
     |                 | Predicted Positive | Predicted Negative |
     |-----------------|--------------------|--------------------|
-    | Actual Positive |         76 	   |         26         |
+    | Actual Positive |         76 	       |         26         |
     | Actual Negative |        7,216       |       9,888        |
     
   - Imbalanced Classification Report
@@ -29,7 +31,7 @@ The purpose of this project is to develop a model that can predict the risk of c
     
     |                 | Predicted Positive | Predicted Negative |
     |-----------------|--------------------|--------------------|
-    | Actual Positive |         62 	   |         38         |
+    | Actual Positive |         62 	       |         38         |
     | Actual Negative |        5,410       |       11,694       |
     
   - Imbalanced Classification Report
@@ -46,7 +48,7 @@ The purpose of this project is to develop a model that can predict the risk of c
     
     |                 | Predicted Positive | Predicted Negative |
     |-----------------|--------------------|--------------------|
-    | Actual Positive |         65 	   |         36         |
+    | Actual Positive |         65 	       |         36         |
     | Actual Negative |        8,094       |       9,010        |
     
   - Imbalanced Classification Report
@@ -63,7 +65,7 @@ The purpose of this project is to develop a model that can predict the risk of c
     
     |                 | Predicted Positive | Predicted Negative |
     |-----------------|--------------------|--------------------|
-    | Actual Positive |         78 	   |         23         |
+    | Actual Positive |         78 	       |         23         |
     | Actual Negative |        7,024       |       10,080       |
     
   - Imbalanced Classification Report
@@ -75,6 +77,8 @@ The purpose of this project is to develop a model that can predict the risk of c
     | avg / total | 0.99 | 0.59 | 0.77 | 0.74 | 0.67 | 0.45 | 17205 |
 
 ### Ensemble Learners
+Two models 
+
 - **Balanced Random Forest Classifier**
   - Balanced Accuracy Score: 0.789
   - Confusion Matrix:
@@ -110,7 +114,7 @@ The purpose of this project is to develop a model that can predict the risk of c
     | avg / total | 0.99 | 0.94 | 0.92 | 0.97 | 0.93 | 0.87 | 17205 |
 
 # Summary
+Unfortunately none of the four models that used logistic regression were very good. They all had spectacularly terrible precision scores for predicting high risk customers. Of all the positive predictions they made, less than 10% of those predictions were actually correct, which means they flagged a huge number of customers who were not actually at high risk. They fared a bit better on their sensitivity/recall scores for high risk customers, with the Oversampler and SMOTEENN models correctly flagging at 70-80% of the high risk customers. However, overall these models only performed just a little bit better than a coin flip would have.
 
 
-
-Based on the results, it appears that the Easy Ensemble AdaBoost Classifier is by far the most effective model to predict high risk customers, and is the only model with less than 2,000 false positives. All other models have a large quantity of false predictions, and very low accuracy and sensitivity scores as a result.
+Based on the results, the Easy Ensemble AdaBoost Classifier is by far the most effective model to predict high risk customers. All other models have a large quantity of false predictions, and very low accuracy and sensitivity scores as a result.
