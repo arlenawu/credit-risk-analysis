@@ -1,7 +1,7 @@
 # credit-risk-analysis
 
 # Overview
-This project analyzes financial data of several hundred customers who took out loans in order to develop a model that can predict which customers may be at risk of not being able to pay back their loans. Six different machine learning models were tested -- RandomOverSampler, SMOTE, RandomUnderSampler, SMOTEENN, BalancedRandomForestClassifier, and EasyEnsembleClassifier. Positive predictions indicate a customer who has a high risk level.
+This project analyzes financial data of several hundred customers who took out loans in order to develop a model that can predict which customers may be at risk of bad credit. Six different machine learning models were tested -- RandomOverSampler, SMOTE, RandomUnderSampler, SMOTEENN, BalancedRandomForestClassifier, and EasyEnsembleClassifier. Positive predictions indicate a customer who has a high risk level.
 
 # Results
 
@@ -77,7 +77,7 @@ Four models were developed using logistic regression. The difference between the
     | avg / total | 0.99 | 0.59 | 0.77 | 0.74 | 0.67 | 0.45 | 17205 |
 
 ### Ensemble Learners
-Two models 
+Two models were developed using ensemble learning. One used a Random Forest algorithm, while the other used Adaptive Boosting.
 
 - **Balanced Random Forest Classifier**
   - Balanced Accuracy Score: 0.789
@@ -114,7 +114,8 @@ Two models
     | avg / total | 0.99 | 0.94 | 0.92 | 0.97 | 0.93 | 0.87 | 17205 |
 
 # Summary
-Unfortunately none of the four models that used logistic regression were very good. They all had spectacularly terrible precision scores for predicting high risk customers. Of all the positive predictions they made, less than 10% of those predictions were actually correct, which means they flagged a huge number of customers who were not actually at high risk. They fared a bit better on their sensitivity/recall scores for high risk customers, with the Oversampler and SMOTEENN models correctly flagging at 70-80% of the high risk customers. However, overall these models only performed just a little bit better than a coin flip would have.
+Unfortunately, none of the four models that used logistic regression were very good. They all had spectacularly terrible precision scores for predicting high-risk customers. Of all the positive predictions they made, less than 1% of those predictions were actually correct, which means they flagged a huge number of customers who were not actually at high risk. They fared a bit better on their sensitivity/recall scores for high-risk customers, with the Oversampler and SMOTEENN models correctly flagging at 70-80% of the high-risk customers. However, based on their overall accuracy scores, these models only performed just a little bit better than a coin flip would have. Clearly logistic regression is not a good fit for this data.
 
+The Balanced Random Forest Classifier was only a little bit better than the previous four models on its precision score, but it still had similar problems. The Easy Ensemble AdaBoost Classifier, however, performed very well in comparison, only missing 8 of the 101 high-risk customers. In terms of sensitivity/recall, it can at least catch 90% of all high-risk customers. It's still imperfect however, since it flagged a large number of false positives -- only 9 percent of all customers it flagged were actually at high risk -- though it still had considerably fewer false positives than all the other models.
 
-Based on the results, the Easy Ensemble AdaBoost Classifier is by far the most effective model to predict high risk customers. All other models have a large quantity of false predictions, and very low accuracy and sensitivity scores as a result.
+In conclusion, of the six models that were tested, the Easy Ensemble AdaBoost Classifier was by far the most effective model to predict high-risk customers. However, it is worth noting that although it can catch most of the high-risk customers, it will also flag a lot of false positives with them, so its positive predictions would still need to be verified.
